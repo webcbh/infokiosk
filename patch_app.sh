@@ -1,0 +1,1 @@
+perl -pi -e 's/  if \(accessDenied\) \{/  if \(config\?\.isMobileDevice && config\?\.settings\?\.enableMobileApp\) \{\n    return <MobileAppView config={config} currentHotel={currentHotel} setActiveModule={setActiveModule} weather={weather} setWeather={setWeather} \/>;\n  \}\n\n  if \(accessDenied\) \{/g' src/App.tsx

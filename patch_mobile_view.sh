@@ -1,0 +1,2 @@
+perl -pi -e 's/const modules = currentHotel\?\.content\?\.modules \|\| \[\];/const modules = (currentHotel?.content?.modules || []).filter((m: any) => m.showOnMobile !== false);/g' src/MobileAppView.tsx
+perl -pi -e 's/const actions = currentHotel\?\.content\?\.actions \|\| \[\];/const actions = (currentHotel?.content?.actions || []).filter((a: any) => a.showOnMobile !== false);/g' src/MobileAppView.tsx

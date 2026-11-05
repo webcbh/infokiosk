@@ -1,0 +1,96 @@
+const fs = require('fs');
+let code = fs.readFileSync('src/components/DirectoryOfServicesEditor.tsx', 'utf8');
+
+const newCategoriesStr = `categories: [
+          {
+            id: 'cat-1',
+            title: 'ALL SERVICES',
+            description: 'Everything you need for a comfortable and memorable stay.',
+            icon: 'ConciergeBell',
+            items: [
+              { name: 'Hotel Policies', icon: 'FileText' },
+              { name: 'Airports', icon: 'Plane' },
+              { name: 'Air-Conditioning / Heating', icon: 'Snowflake' },
+              { name: 'Auto Reservation', icon: 'Car' },
+              { name: 'Airport Transportation', icon: 'Bus' },
+              { name: 'Attractions & Bridges', icon: 'Map' },
+              { name: 'Baby Cot', icon: 'Baby' },
+              { name: 'Banks', icon: 'Landmark' },
+              { name: 'Beverages', icon: 'Coffee' },
+              { name: 'Bills', icon: 'Receipt' },
+              { name: 'Bus Service', icon: 'Bus' },
+              { name: 'Car Rental', icon: 'Car' },
+              { name: 'Check In / Out Time', icon: 'Clock' },
+              { name: 'Children\\'s High Chairs', icon: 'Baby' },
+              { name: 'Coffee & Tea Making Facilities', icon: 'Coffee' },
+              { name: 'Credit Card Acceptance', icon: 'CreditCard' },
+              { name: 'Doctoring', icon: 'Stethoscope' },
+              { name: 'Driving License', icon: 'IdCard' },
+              { name: 'Doctor', icon: 'Stethoscope' },
+              { name: 'Dress Code', icon: 'Shirt' },
+              { name: 'Electricity', icon: 'Zap' },
+              { name: 'Emergencies', icon: 'Siren' },
+              { name: 'Emergency Calls', icon: 'Phone' },
+              { name: 'Embassies & Consulates', icon: 'Landmark' },
+              
+              { name: 'Entertainment', icon: 'Music' },
+              { name: 'Excursions', icon: 'Map' },
+              { name: 'First Aid', icon: 'PlusSquare' },
+              { name: 'Flowers', icon: 'Flower2' },
+              { name: 'Foreign Exchange', icon: 'DollarSign' },
+              { name: 'Games', icon: 'Gamepad2' },
+              { name: 'Green Donkey', icon: 'Trees' },
+              { name: 'Group Arrangements', icon: 'Users' },
+              { name: 'Gym', icon: 'Dumbbell' },
+              { name: 'Hair Dryer', icon: 'Wind' },
+              { name: 'Hair Salon', icon: 'Scissors' },
+              { name: 'Housekeeping', icon: 'Broom' },
+              { name: 'Internet Corner', icon: 'Globe' },
+              { name: 'Keys', icon: 'Key' },
+              { name: 'Kids Club', icon: 'Baby' },
+              { name: 'Laundry & Dry Cleaning Services', icon: 'Shirt' },
+              { name: 'Library / Books', icon: 'Book' },
+              { name: 'Lifts', icon: 'ArrowUpDown' },
+              { name: 'Lost & Found', icon: 'Search' },
+              { name: 'Luggage', icon: 'Briefcase' },
+              { name: 'Mail & Messages', icon: 'Mail' },
+              { name: 'Meeting & Conference Facilities', icon: 'Users' },
+              { name: 'Men\\'s', icon: 'User' },
+              { name: 'Mini Bar', icon: 'Wine' },
+              { name: 'Mini Market', icon: 'ShoppingCart' },
+              { name: 'Mirrored Sockets', icon: 'Zap' },
+              
+              { name: 'Mobile', icon: 'Smartphone' },
+              { name: 'Parking', icon: 'ParkingCircle' },
+              { name: 'Pets', icon: 'PawPrint' },
+              { name: 'Pharmacy', icon: 'Pill' },
+              { name: 'Photocopier', icon: 'Printer' },
+              { name: 'Pool Beach Towels', icon: 'Waves' },
+              { name: 'Postage Stamps', icon: 'Mail' },
+              { name: 'Premium Package (Lux. All Inclusive)', icon: 'Gift' },
+              { name: 'Receptions', icon: 'Bell' },
+              { name: 'Religious Services', icon: 'Church' },
+              { name: 'Restaurants', icon: 'Utensils' },
+              { name: 'Room Service', icon: 'ConciergeBell' },
+              { name: 'Safety Deposit Box', icon: 'Lock' },
+              { name: 'Sauna and Steam bath', icon: 'Droplets' },
+              { name: 'Security', icon: 'ShieldCheck' },
+              { name: 'Smoking', icon: 'Cigarette' },
+              { name: 'Spa', icon: 'Flower2' },
+              { name: 'Telephone', icon: 'Phone' },
+              { name: 'Television', icon: 'Tv' },
+              { name: 'Trouser Press', icon: 'AlignVerticalSpaceAround' },
+              { name: 'Wake-up Service', icon: 'AlarmClock' },
+              { name: 'Water', icon: 'Droplet' },
+              { name: 'Water Sports', icon: 'Waves' },
+              { name: 'Wi-Fi', icon: 'Wifi' },
+              { name: 'Wine', icon: 'Wine' }
+            ]
+          }
+        ],`;
+
+const categoriesStartRegex = /categories:\s*\[[\s\S]*?bottomItems:\s*\[/g;
+
+code = code.replace(categoriesStartRegex, newCategoriesStr + '\n        bottomItems: [');
+
+fs.writeFileSync('src/components/DirectoryOfServicesEditor.tsx', code);

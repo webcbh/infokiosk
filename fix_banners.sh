@@ -1,0 +1,1 @@
+perl -pi -e 's/const currentBanners =\s*newModules\[editingMainModuleIdx\]\.awardsBanners \|\| \[\];/const currentBanners = \[...\(newModules\[editingMainModuleIdx\].awardsBanners || \[\]\)\];/g' src/AdminDashboard.tsx
